@@ -7,3 +7,5 @@ You will need a licensed FaceVACS SDK installation, the boost C++ libraries and 
 
 This is a part of the software that I developed during the experiments of my bachelor thesis.
 You can ask the visio admin for permission for the private repository "FRexperiments" if you need more code.
+
+-Michael Grupp
