@@ -37,7 +37,7 @@ MatchingEngine::MatchingEngine(path configFile, path logfile) {
 
 
 FRsdk::FIR MatchingEngine::loadFIR(path fir){
-	if (boost::filesystem::is_directory(fir.parent_path()) || boost::filesystem::is_empty(fir.parent_path())) {
+	if (boost::filesystem::is_directory(fir.parent_path()) || !boost::filesystem::is_empty(fir.parent_path())) {
 		//build fir
 		ifstream firIn(fir.string(), ios::in | ios::binary);
 		return firBuilder->build(firIn);
@@ -53,7 +53,7 @@ FRsdk::FIR MatchingEngine::loadFIR(path fir){
 FRsdk::Population MatchingEngine::createPopulation(path firFolder){
 	//get the paths of the .fir files in the folder an create the poulation out of them
 	vector<path> firPaths;
-	if (boost::filesystem::is_directory(firFolder) || boost::filesystem::is_empty(firFolder)) {
+	if (boost::filesystem::is_directory(firFolder) || !boost::filesystem::is_empty(firFolder)) {
 		copy(directory_iterator(firFolder), directory_iterator(), back_inserter(firPaths));
 		FRsdk::Population population(*cfg.get());
 		string galleryName;
