@@ -45,7 +45,7 @@ FRsdk::FIR MatchingEngine::loadFIR(path fir){
 	else {
 		Logger matchingLogger = Loggers->getLogger("matching");
 		matchingLogger.info("Error at loadFIR: specified folder is empty or doesn't exist");
-		throw exception("MatchingEngine: file/path error - check logfile");
+		throw exception();
 	}
 }
 
@@ -68,7 +68,7 @@ FRsdk::Population MatchingEngine::createPopulation(path firFolder){
 	else {
 		Logger matchingLogger = Loggers->getLogger("matching");
 		matchingLogger.info("Error at createPopulation: specified folder is empty or doesn't exist");
-		throw exception("MatchingEngine: file/path error - check logfile");
+		throw exception();
 	}
 }
 
