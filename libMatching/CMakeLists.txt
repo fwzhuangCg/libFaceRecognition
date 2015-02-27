@@ -23,6 +23,9 @@ else(WIN32)
 endif()
 message(STATUS "Including FVSDK at ${FVSDK_INCLUDE_DIR}")
 
+#openCV
+find_package(OpenCV 2.4.3 REQUIRED core highgui video)
+
 #Add boost
 find_package(Boost 1.50.0 COMPONENTS program_options system filesystem REQUIRED)
 if(Boost_FOUND)
@@ -46,10 +49,12 @@ include_directories("include")
 include_directories(${COGSDK_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${FVSDK_INCLUDE_DIR})
+include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${libLogging_SOURCE_DIR}/include)
+include_directories(${libUtilities_SOURCE_DIR}/include)
 
 
 add_library(${SUBPROJECT_NAME} ${SOURCE} ${HEADERS})
 #target_include_directories(${SUBPROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(${SUBPROJECT_NAME} ${Boost_LIBRARIES} fvsdk libLogging) #${OpenCV_LIBS} ImageIO
+target_link_libraries(${SUBPROJECT_NAME} ${Boost_LIBRARIES} ${OpenCV_LIBS} fvsdk libLogging libUtilities) #${OpenCV_LIBS} ImageIO
 

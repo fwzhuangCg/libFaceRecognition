@@ -15,6 +15,8 @@
 #include <frsdk/config.h>
 #include <frsdk/match.h>
 #include <boost/filesystem.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 //custom libs
 #include "libLogging/LoggerFactory.hpp"

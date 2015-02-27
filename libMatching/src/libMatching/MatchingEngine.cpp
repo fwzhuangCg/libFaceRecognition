@@ -8,6 +8,8 @@
 #include <frsdk/match.h>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/operations.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 //custom libs
 #include "libLogging/LoggerFactory.hpp"
@@ -89,6 +91,13 @@ vector<float>  MatchingEngine::matchToPopulation(FRsdk::FIR probe, const FRsdk::
 		scoreVector.push_back((float)*scoreIter);
 	}
 	return scoreVector;
+}
+
+
+float matchPairCV(cv::Mat, path galleryFIRpath) {
+
+	//TODO
+
 }
 
 
