@@ -7,11 +7,14 @@
 #include <frsdk/image.h>   //TODO MG
 #include <frsdk/enroll.h>
 #include <boost/filesystem.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 //custom libs
-#include "libEnroll/edialog.h" //only include this lib in .cpp files, it contains definitions, not just declarations
+#include "libEnroll/edialog.h" //only include this lib in .cpp files, it contains definitions, not just declarations -> crazy linker error 
 #include "libLogging/LoggerFactory.hpp"
 #include "libEnroll/EnrollmentEngine.hpp"
+#include "libUtilities/include/libImageConversion.hpp"
 
 using namespace std;
 using logging::Logger;
@@ -81,6 +84,22 @@ void EnrollmentEngine::enrollSingleImage(path imagePath, path outputFolder) {
 	string firName = imagePath.filename().replace_extension("fir").string();
 	path firPath = outputFolder / firName;
 	enrollSampleSet(sampleSet, firPath);
+}
+
+FRsdk::FIR EnrollmentEngine::enrollOpenCVMat(cv::Mat cvImage, path firPath) {
+	//convert image to FaceVACS format
+	FRsdk::Image fvImage = CVmatToFRsdkImage(cvImage);
+	//enroll
+	try {
+		FRsdk::SampleSet sampleSet;
+		sampleSet.push_back(FRsdk::Sample(fvImage));
+		enrollSampleSet(sampleSet, firPath);
+	}
+	catch (exception& e) {
+		Logger sessionLogger = Loggers->getLogger("Enroll");
+		sessionLogger.info("Error in enrollment - is there a face?");
+		sessionLogger.info(e.what());
+	}
 }
 
 void EnrollmentEngine::enrollMultipleImages(vector <path> imagePaths, path outputFolder, string firName) {

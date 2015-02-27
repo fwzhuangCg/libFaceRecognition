@@ -18,6 +18,8 @@
 #include <frsdk/image.h>  //TODO MG
 #include <frsdk/enroll.h>
 #include <boost/filesystem.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 //custom libs
 #include "libLogging/LoggerFactory.hpp"
@@ -76,6 +78,13 @@ public:
 	 * @param	the path of the folder for the .fir-file, that is going to be produced
 	*/
 	void enrollSingleImage(path imagePath, path outputFolder);
+
+
+	/* enrolls a single image from OpenCV
+	* @param	the path of the image
+	* @return	the path of the folder for the .fir-file, that is going to be produced
+	*/
+	FRsdk::FIR enrollOpenCVMat(cv::Mat image, path firPath);
 
 
 	/* enrolls multiple images. One .fir-file is produced for all faces that are found.
