@@ -23,5 +23,5 @@ include_directories(${PROJECT_SOURCE_DIR})
 add_subdirectory(libEnroll)
 add_subdirectory(libMatching)
 add_subdirectory(libLogging)
-
+add_subdirectory(libUtilities)
 

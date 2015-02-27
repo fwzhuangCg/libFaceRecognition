@@ -20,3 +20,6 @@ set(FVSDK_INCLUDE_DIR "C:\\FVSDK_8_9_5\\include" CACHE STRING "Directory of the 
 # Linux: Only one directory for the libs, plus the headers.
 #set(FVSDK_LIB_DIR "/home/student/cognitecSDK/FVSDK_8_9_5/lib/x86_64/gcc-4.6-ipp" CACHE STRING "Directory of the FVSDK .so libraries" FORCE)
 #set(FVSDK_INCLUDE_DIR "/home/student/cognitecSDK/FVSDK_8_9_5/include" CACHE STRING "Directory of the FVSDK headers" FORCE)
+
+#OpenCV build path
+set(OpenCV_DIR   "C:\\opencv\\build"   CACHE STRING "OpenCV config dir, where OpenCVConfig.cmake can be found" FORCE)
