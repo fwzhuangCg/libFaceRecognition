@@ -50,7 +50,6 @@ FRsdk::SampleSet EnrollmentEngine::loadSampleSet(vector<path> imagePaths) {
 }
 
 void EnrollmentEngine::enrollSampleSet(FRsdk::SampleSet sampleSet, path firPath) {
-	Logger sessionLogger = Loggers->getLogger("Enroll");
 	FRsdk::Enrollment::Processor processor(*cfg.get());
 	try {
 		// create the needed interaction instances
@@ -59,6 +58,7 @@ void EnrollmentEngine::enrollSampleSet(FRsdk::SampleSet sampleSet, path firPath)
 		processor.process(sampleSet.begin(), sampleSet.end(), feedback);
 	}
 	catch (exception& e) {
+		Logger sessionLogger = Loggers->getLogger("Enroll");
 		sessionLogger.info("Error in enrollSampleSet");
 		sessionLogger.info(e.what());
 	}
